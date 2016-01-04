@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_id": "the-hardest-part",
+    "project_number": "1041428792549",
+    "name": "The hardest part"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041428792549:android:49361c122c0ad757",
+        "client_id": "android:complex.digital.gangneung.thp",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "complex.digital.gangneung.thp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041428792549-hhe31rafpr2c330rovt6f0laplqf7d2n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "complex.digital.gangneung.thp",
+            "certificate_hash": "513A577BEC6B5F460E43A4A7A43D194DD1C7F71B"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
