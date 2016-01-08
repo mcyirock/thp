@@ -18,6 +18,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
 }
 
 dependencies {
@@ -27,4 +31,5 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
     compile 'com.google.android.gms:play-services-auth:8.3.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
 }
