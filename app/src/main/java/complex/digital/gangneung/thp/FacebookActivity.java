@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
@@ -29,6 +30,10 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class FacebookActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     //Facebook Login
@@ -44,6 +49,10 @@ public class FacebookActivity extends AppCompatActivity implements GoogleApiClie
     private TextView mStatusTextView;
     private ProgressDialog mProgressDialog;
 
+    //Bind the Views of the content_facebook.xml file
+    @Bind(R.id.sign_in_button) Button btn_sign_in;
+    @Bind(R.id.sign_out_button) Button btn_sign_out;
+    @Bind(R.id.disconnect_button) Button btn_disconnect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +61,8 @@ public class FacebookActivity extends AppCompatActivity implements GoogleApiClie
         callbackManager = CallbackManager.Factory.create();
 
         setContentView(R.layout.content_facebook);
+        ButterKnife.bind(this);
+
         info = (TextView)findViewById(R.id.info);
         loginButton = (LoginButton)findViewById(R.id.login_button);
 
@@ -80,11 +91,6 @@ public class FacebookActivity extends AppCompatActivity implements GoogleApiClie
 
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
-
-        // Button listeners
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
-        findViewById(R.id.sign_out_button).setOnClickListener(this);
-        findViewById(R.id.disconnect_button).setOnClickListener(this);
 
         // [START configure_signin]
         // Configure sign-in to request the user's ID, email address, and basic
@@ -172,6 +178,7 @@ public class FacebookActivity extends AppCompatActivity implements GoogleApiClie
     // [END handleSignInResult]
 
     // [START signIn]
+    @OnClick(R.id.sign_in_button)
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -179,6 +186,7 @@ public class FacebookActivity extends AppCompatActivity implements GoogleApiClie
     // [END signIn]
 
     // [START signOut]
+    @OnClick(R.id.sign_out_button)
     private void signOut() {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
@@ -193,6 +201,7 @@ public class FacebookActivity extends AppCompatActivity implements GoogleApiClie
     // [END signOut]
 
     // [START revokeAccess]
+    @OnClick(R.id.disconnect_button)
     private void revokeAccess() {
         Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
@@ -243,16 +252,5 @@ public class FacebookActivity extends AppCompatActivity implements GoogleApiClie
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.sign_in_button:
-                signIn();
-                break;
-            case R.id.sign_out_button:
-                signOut();
-                break;
-            case R.id.disconnect_button:
-                revokeAccess();
-                break;
-        }
     }
 }
